@@ -1,0 +1,21 @@
+version: "3.9"
+services:
+  web:
+    image: nginx
+    volumes:
+      - ./front-end:/usr/share/nginx/html
+      - ./message-broker:/usr/share/nginx/html/message-broker
+      - ./nginx/conf/:/etc/nginx/conf.d/:ro
+      - ./certs:/etc/nginx/certs
+    ports:
+      - "80:80"
+      - "443:443"
+    restart: always
+  broker:
+    image: eclipse-mosquitto
+    volumes:
+      - ./message-broker/certs:/mosquitto/certs
+      - ./message-broker/config/mosquitto.conf:/mosquitto/config/mosquitto.conf
+    ports:
+      - "1884:1884"
+    restart: always

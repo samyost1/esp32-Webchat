@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Webchat Application</title>
+	<link rel="stylesheet" type="text/css" href=".\style\style.css">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@800&display=swap" rel="stylesheet">
+</head>
+
+<body>
+	<div class="chat-title">
+		<h1>MQTT Chat</h1>
+	</div>
+	<div class="chat-container">
+		<div class="chat-header">
+			<h2 id="user-id_heading">User-id: user-____</h2>
+		</div>
+		<div class="chat-messages">
+			<ul id="messages"></ul>
+		</div>
+		<div class="chat-input">
+			<input type="text" placeholder="Type your message...">
+			<button>Send</button>
+		</div>
+	</div>
+
+	<script src="https://unpkg.com/mqtt/dist/mqtt.min.js"></script>
+	<script>
+		// Globally initializes an mqtt variable
+		console.log(mqtt)
+	</script>
+	<script src="..\message-broker\app.js"></script>
+</body>
+
+</html>
