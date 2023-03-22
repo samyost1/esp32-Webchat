@@ -4,26 +4,15 @@ const messages = document.querySelector('#messages');
 const userId_heading = document.querySelector('#user-id_heading');
 
 
-const clientId = 'user-' + Math.random().toString(16).substr(2, 4)
+const clientId = 'student-' + Math.random().toString(16).substr(2, 4)
 userId_heading.textContent = 'User-id: ' + clientId
 
 
-const host = 'wss://localhost:1884'
+const host = 'wss://netwerkenbasis.com:1884'
 
 const options = {
-	keepalive: 60,
-	clientId: clientId,
-	protocolId: 'MQTT',
-	protocolVersion: 4,
-	clean: true,
-	reconnectPeriod: 1000,
-	connectTimeout: 30 * 1000,
-	will: {
-		topic: 'WillMsg',
-		payload: 'Connection Closed abnormally..!',
-		qos: 0,
-		retain: false
-	},
+	username: 'student',
+    password: 'welkom01',
 }
 
 console.log('Connecting mqtt client')
@@ -42,20 +31,15 @@ connection.on('connect', () => {
 	console.log('Client connected:' + clientId)
 	// Subscribe
 	connection.subscribe('chat/message', { qos: 0 })
-	// connection.subscribe('testtopic', { qos: 0 })
 })
 
 
 // Received
 connection.on('message', (topic, message, packet) => {
-	var message_clientId = message.toString().substring(0, 9)
-	console.log('Received Message: ' + message.toString().substring(9)
-		+ '\nOn topic: ' + topic
-		+ '\nFrom user: ' + message_clientId)
+	var message_clientId = message.toString().substring(0, 12)
 	if (message_clientId != clientId) {
-		// console.log('this is you')
 		const el = document.createElement('li');
-		el.innerHTML = message_clientId + ': ' + message.toString().substring(9);
+		el.innerHTML = message;
 		messages.appendChild(el);
 	}
 })
@@ -74,7 +58,7 @@ function sendMessage() {
 		const el = document.createElement('li');
 		el.innerHTML = clientId + ': ' + input.value;
 		messages.appendChild(el);
-		connection.publish('chat/message', clientId + input.value, { qos: 0, retain: false })
+		connection.publish('chat/message', input.value)
 		input.value = '';
 	}
 }
