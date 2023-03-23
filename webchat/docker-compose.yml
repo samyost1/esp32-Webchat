@@ -5,8 +5,9 @@ services:
     volumes:
       - ./front-end:/usr/share/nginx/html
       - ./message-broker:/usr/share/nginx/html/message-broker
-      - ./nginx/conf/:/etc/nginx/conf.d/:ro
+      - ./nginx/conf/:/etc/nginx/conf.d/
       - ./certs:/etc/nginx/certs
+      - ./nginx/auth/.htpasswd:/etc/nginx/.htpasswd
     ports:
       - "80:80"
       - "443:443"
