@@ -55,9 +55,6 @@ input.addEventListener('keyup', function (event) {
 
 function sendMessage() {
 	if (input.value) {
-		const el = document.createElement('li');
-		el.innerHTML = clientId + ': ' + input.value;
-		messages.appendChild(el);
 		connection.publish('chat/message', input.value)
 		input.value = '';
 	}
