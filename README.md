@@ -1,5 +1,8 @@
 # esp32-Webchat
 Sam Yost (1030197)
+Een webchat die draait op een ESP32 microcontroller. De ESP32, gecombineer met een DHT22-temperatuur- en vochtigheidssensor, is in staat om de temperatuur te meten en deze gegevens beschikbaar te maken via een chatinterface. 
+
+De ESP32 is verbonden met een centrale broker (netwerkenbasis.com) via WiFi. Deze broker maakt communicatie mogelijk tussen de ESP32 en een webserver. Via een webpagina kunnen we commando's naar de bot sturen en de gemeten temperatuurwaarden opvragen.
 
 
 ## Installatie
